@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  apache2:
+    build:
+      context: ./.build
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+      - "444:443"
+    volumes:
+      - ./lamp-docroot:/var/www/html
+    #command: "a2enmod rewrite"
+    #command: "service apache2 restart"
+  mariadb:
+    image: mariadb:10.3
+    volumes:
+      - ./lamp-docroot/tmp:/opt
+      - ./lamp-mariadb-conf:/etc/mysql
+      - ./db:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: talentforce
+      MYSQL_USER: docker
+      MYSQL_PASSWORD: vnfw95htn9
+    ports:
+      - '3307:3306'
+  redis:
+#    container_name:redis${CONTNAME}
+    image: redis
+    ports:
+      - "3379:3379"
+
