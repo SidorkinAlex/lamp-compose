@@ -18,6 +18,7 @@ services:
       - ./lamp-docroot/tmp:/opt
       - ./lamp-mariadb-conf:/etc/mysql
       - ./db:/var/lib/mysql
+#      - tf-mariadb-1:/var/lib/mysql
     environment:
       MARIADB_ROOT_PASSWORD: root
       MARIADB_DATABASE: db-1
