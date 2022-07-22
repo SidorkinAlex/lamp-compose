@@ -13,18 +13,18 @@ services:
     #command: "a2enmod rewrite"
     #command: "service apache2 restart"
   mariadb:
-    image: mariadb:10.3
+    image: mariadb:10.7.4
     volumes:
       - ./lamp-docroot/tmp:/opt
       - ./lamp-mariadb-conf:/etc/mysql
       - ./db:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: talentforce
-      MYSQL_USER: docker
-      MYSQL_PASSWORD: vnfw95htn9
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: db-1
+      MARIADB_USER: docker
+      MARIADB_PASSWORD: vnfw95htn9
     ports:
-      - '3307:3306'
+      - '3306:3306'
   redis:
 #    container_name:redis${CONTNAME}
     image: redis
